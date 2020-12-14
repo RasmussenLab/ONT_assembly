@@ -21,5 +21,5 @@ etc.
 ### Run the Snakemake Pipeline
 
 ```
-$ snakemake -s Snakefile -j --use-conda 
+$ snakemake -s Snakefile -j --use-conda --use-envmodules
 ```
