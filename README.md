@@ -4,7 +4,8 @@
 
 ### Prepare file paths
 ```
-- https://github.com/joacjo/ONT_assembly.git
+- cd <where-do-you-wanna-go?>
+- git clone https://github.com/joacjo/ONT_assembly.git
 - Edit config.yaml (i.e. set the directory of Fastq files)  
 - Ensure that each genome file in the Fastq file (only PacBio or Nanopore format) directory is named accordingly:
   - `fastqdirectory/yersinia.fastq` or `fastqdirectory/yersinia.sample2.fastq`. Basically, the Sample/Genome identifier needs to be separated from any other information in the file with a dot. 
