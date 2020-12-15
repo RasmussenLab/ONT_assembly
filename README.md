@@ -1,4 +1,6 @@
-# ONT_assembly / Whole Genome Nanopore-Seq assembly
+# ONT_assembly 
+
+Whole Genome Nanopore-Seq or PacBio assembly
 
 ## How do use it 
 
