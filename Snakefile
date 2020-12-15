@@ -28,11 +28,9 @@ print(GENOMEIDS)
 print(ID2SIZE)
 
 
-
 rule target: 
     input:
         expand("01_canu/{ID}/ONT.assembly.done", ID=GENOMEIDS)
-
 
 rule canu_assembly_pipeline:
     input:
@@ -46,6 +44,7 @@ rule canu_assembly_pipeline:
         ID = '\w+'
     threads: THREADS
     envmodules:
+        "tools",
         "jre/1.8.0-openjdk",
         "perl/5.24.0",
         "canu/2.0",
