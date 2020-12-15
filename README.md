@@ -23,3 +23,12 @@ etc.
 ```
 $ snakemake -s Snakefile -j --use-conda --use-envmodules
 ```
+
+
+## Wish list 
+
+Inspiration from here:
+https://bpa-csiro-workshops.github.io/intro-ngs-manuals/modules/btp-module-denovo-canu/denovo_canu/ 
+
+- Add a module to the Flow with Circularise 
+- A mapping module of Paired-end Reads as well for 
