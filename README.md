@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# ONT_assembly
-=======
 # ONT_assembly / Whole Genome Nanopore-Seq assembly
 
 ## How do use it 
@@ -35,4 +32,3 @@ https://bpa-csiro-workshops.github.io/intro-ngs-manuals/modules/btp-module-denov
 
 - Add a module to the Flow with Circularise 
 - A mapping module of Paired-end Reads as well for 
->>>>>>> 508c7ed32a543474ece8d21ca931f15ba98c3d48
