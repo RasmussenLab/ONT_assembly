@@ -24,6 +24,13 @@ etc.
 $ snakemake -s Snakefile -j --use-conda --use-envmodules
 ```
 
+### Noteworthy output files from Assembly
+```
+01_canu/*/ONT.contigs.fasta
+01_canu/*/ONT.contigs.layout.tigInfo 
+01_canu/*/ONT.correctedReads.fasta.gz
+```
+
 
 ## Wish list 
 

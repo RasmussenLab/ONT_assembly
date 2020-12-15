@@ -56,3 +56,43 @@ rule canu_assembly_pipeline:
 
         echo "Done" > {output.donefile}
         """
+
+
+
+rule run_prokka:
+    input:
+        contigs = "01_canu/{ID}/ONT.contigs.fasta"
+    output:
+        prokkaout = directory( "02_prokka/{ID}" )
+    params:
+        genomeid = "{ID}"
+    wildcard_constraints:
+        ID = '\w+'
+    threads: THREADS
+    conda:
+        "envs/prokka.yaml"
+    shell:
+        """
+        prokka --outdir {output.prokkaout} --prefix {params.genomeid} {input.contigs}
+        """
+
+rule interproscan_annotation:
+    input:
+        proteins = ""
+    output:
+        interproout = directory("")
+    wildcard_constraints:
+        ID = '\w+'
+    threads: THREADS
+    envmodules:
+        "tools",
+        "anaconda3/4.4.0",
+        "perl/5.24.0",
+        "java/1.8.0-openjdk",
+        "interproscan/5.36-75.0"
+    shell:
+    """
+    interproscan.sh -goterms -pa -f tsv -appl Pfam,TIGRFAM --cpu {threads} \
+	-i {input.proteins} \
+	-b {output.interproout}
+    """
