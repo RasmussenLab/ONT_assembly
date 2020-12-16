@@ -3,7 +3,7 @@ import os
 
 configfile: 'config.yaml'
 
-THREADS=8
+THREADS=20
 
 
 ### Load Genome IDS
@@ -30,7 +30,8 @@ print(ID2SIZE)
 
 rule target: 
     input:
-        expand("01_canu/{ID}/ONT.assembly.done", ID=GENOMEIDS)
+        expand("01_canu/{ID}/ONT.assembly.done", ID=GENOMEIDS),
+        expand("01_flye/{ID}/assembly.fasta", ID=GENOMEIDS)
 
 rule canu_assembly_pipeline:
     input:
@@ -56,9 +57,32 @@ rule canu_assembly_pipeline:
 
         echo "Done" > {output.donefile}
         """
+        
+rule flye_assembly_pipeline:
+    input:
+        ONTFASTQ = "ontfastq/{ID}.fastq.gz",
+    output:
+        ONTASSEMBLY = directory( os.path.join('01_flye','{ID}') ),
+    params:
+        SIZE = lambda wildcards: ID2SIZE[wildcards.ID]
+    wildcard_constraints:
+        ID = '\w+'
+    threads: THREADS
+    conda:
+        "envs/flye.yaml"
+    shell:
+        """
+        flye --nano-raw {input.ONTFASTQ} --out-dir {output.ONTASSEMBLY} \
+        -g {params.SIZE} \
+        -t {threads} \
+        -i 1 \
+        --plasmids
+        """
 
 
 
+
+### Not implemented yet.
 rule run_prokka:
     input:
         contigs = "01_canu/{ID}/ONT.contigs.fasta"
