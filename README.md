@@ -39,5 +39,5 @@ $ snakemake -s Snakefile -j --use-conda --use-envmodules
 Inspiration from here:
 https://bpa-csiro-workshops.github.io/intro-ngs-manuals/modules/btp-module-denovo-canu/denovo_canu/ 
 
-- Add a module to the Flow with Circularise 
-- A mapping module of Paired-end Reads as well for 
+- Add a module to the Flow with the Circlator feature for polishing Circular Genomes  (https://github.com/sanger-pathogens/circlator) 
+- An integrative assembly module with Paired-end Reads for bolishing long read assemblies 
