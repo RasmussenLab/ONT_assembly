@@ -41,3 +41,8 @@ https://bpa-csiro-workshops.github.io/intro-ngs-manuals/modules/btp-module-denov
 - Hybrid assembly and Plasmid assembly with Flye https://github.com/fenderglass/Flye 
 - Add a module to the Flow with the Circlator feature for polishing Circular Genomes  (https://github.com/sanger-pathogens/circlator) 
 - An integrative assembly module with Paired-end Reads for bolishing long read assemblies 
+
+Circlator Notes:
+The input is a genome assembly in FASTA format and corrected PacBio or nanopore reads in FASTA or FASTQ format. Circlator will attempt to identify each circular sequence and output a linearised version of it. It does this by assembling all reads that map to contig ends and comparing the resulting contigs with the input assembly.
+
+The input assembly must not be too fragmented. Although Circlator will join contigs together, whenever it can identify contigs that can be unambiguously joined, its main aim is to circularize the core genome and plasmids. 
