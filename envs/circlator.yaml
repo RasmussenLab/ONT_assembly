@@ -1,0 +1,6 @@
+name: circlator
+channels:
+   - bioconda
+   - conda-forge
+dependencies:
+   - circlator

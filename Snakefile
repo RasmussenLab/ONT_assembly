@@ -31,7 +31,8 @@ print(ID2SIZE)
 rule target: 
     input:
         expand("01_canu/{ID}/ONT.assembly.done", ID=GENOMEIDS),
-        expand("01_flye/{ID}/assembly.fasta", ID=GENOMEIDS)
+        expand("01_flye/{ID}", ID=GENOMEIDS),
+
 
 rule canu_assembly_pipeline:
     input:
@@ -78,6 +79,29 @@ rule flye_assembly_pipeline:
         -i 1 \
         --plasmids
         """
+
+### Polish circular assembblies 
+rule circlator:
+    input:
+        canu_assembly = "01_canu/{ID}/ONT.contigs.fasta",
+        flye_assembly = "01_flye/{ID}/assembly.fasta",
+        canu_corrected_reads = "01_canu/{ID}/ONT.correctedReads.fasta.gz"
+    output:
+        canu_circ_out = "02_circ_canu/{ID}",
+        flye_circ_out = "02_circ_flye/{ID}"
+    wildcard_constraints:
+        ID = '\w+'
+    threads: THREADS
+    conda:
+        "envs/circlator.yaml"
+    shell:
+        """
+        circlator all {input.canu_assembbly} {input.canu_corrected_reads} {output.canu_circ_out}
+        #circlator all {input.flye_assembly} {input.canu_corrected_reads} {output.flye_circ_out}
+        """
+
+
+
 
 
 
