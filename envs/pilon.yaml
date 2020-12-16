@@ -1,0 +1,8 @@
+name: pilon
+channels:
+   - bioconda
+   - conda-forge
+dependencies:
+   - pilon
+   - samtools
+   - bwa
